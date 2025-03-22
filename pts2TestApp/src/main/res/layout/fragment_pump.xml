@@ -319,7 +319,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/flow"
+                android:background="@drawable/flow2"
                 android:padding="16dp">
 
                 <!-- Customer Details Header -->
@@ -377,6 +377,8 @@
                     android:id="@+id/spinnerVolumePrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:textColor="@color/black"
                     android:entries="@array/volume_or_amount_options"
                     android:layout_marginTop="8dp"/>
 
@@ -414,7 +416,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nozzle"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textColorHint="@color/grey"
                     android:textColor="@color/black"
                     android:padding="8dp"

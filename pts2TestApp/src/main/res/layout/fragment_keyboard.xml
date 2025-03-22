@@ -61,14 +61,14 @@
 
             <Button
                 android:id="@+id/bPump"
-                style="@style/ButtonBlue"
+                style="@style/ButtonRed"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
                 android:onClick="@{viewModel::onButtonPumpClicked}"
                 android:paddingHorizontal="5dp"
-                android:text="@string/btn_Pump"
+                android:text="CANCEL"
                 android:textSize="25sp" />
 
             <Button
