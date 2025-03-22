@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.technotrade.pts2.pts2testapp.gui.viewmodel.KeyboardViewModel" />
+
+        <variable
+            name="viewModel"
+            type="KeyboardViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@color/transparent"
+        android:baselineAligned="false"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMonitorTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:lines="1"
+                android:longClickable="false"
+                android:maxLength="32"
+                android:singleLine="true"
+                android:text="@{viewModel.getMonitorTop}"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvMonitorBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:lines="1"
+                android:longClickable="false"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:text="@={viewModel.getMonitorBottom}"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bPump"
+                style="@style/ButtonBlue"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:onClick="@{viewModel::onButtonPumpClicked}"
+                android:paddingHorizontal="5dp"
+                android:text="@string/btn_Pump"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/bEnter"
+                style="@style/ButtonGreen"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:onClick="@{viewModel::onButtonEnterClicked}"
+                android:paddingHorizontal="5dp"
+                android:text="Submit"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

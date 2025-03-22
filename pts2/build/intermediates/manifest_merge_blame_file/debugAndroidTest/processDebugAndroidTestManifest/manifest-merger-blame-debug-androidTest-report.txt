@@ -1,0 +1,138 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.technotrade.pts2.test" >
+4
+5    <uses-sdk
+5-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:5:5-74
+6        android:minSdkVersion="24"
+6-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:5:15-41
+7        android:targetSdkVersion="34" />
+7-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:5:42-71
+8
+9    <instrumentation
+9-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:11:5-15:75
+10        android:name="android.test.InstrumentationTestRunner"
+10-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:11:22-75
+11        android:functionalTest="false"
+11-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:14:22-52
+12        android:handleProfiling="false"
+12-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:13:22-53
+13        android:label="Tests for com.technotrade.pts2.test"
+13-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:15:22-73
+14        android:targetPackage="com.technotrade.pts2.test" />
+14-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:12:22-71
+15
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:5-67
+16-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:7:22-64
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:5-79
+17-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:8:22-76
+18    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+18-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:5-74
+18-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:9:22-71
+19    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+19-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:5-79
+19-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:10:22-76
+20    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+20-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:5-81
+20-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:11:22-78
+21    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+21-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:5-71
+21-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:12:22-68
+22    <uses-permission android:name="android.permission.WAKE_LOCK" />
+22-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:13:5-68
+22-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:13:22-65
+23    <uses-permission android:name="android.permission.VIBRATE" />
+23-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:14:5-66
+23-->[:pts2] /Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/merged_manifest/debug/processDebugManifest/AndroidManifest.xml:14:22-63
+24
+25    <permission
+25-->[androidx.core:core:1.13.0] /Users/paulpamba/.gradle/caches/transforms-4/7355ed258ff004f1f7a52a25b39730a1/transformed/core-1.13.0/AndroidManifest.xml:22:5-24:47
+26        android:name="com.technotrade.pts2.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+26-->[androidx.core:core:1.13.0] /Users/paulpamba/.gradle/caches/transforms-4/7355ed258ff004f1f7a52a25b39730a1/transformed/core-1.13.0/AndroidManifest.xml:23:9-81
+27        android:protectionLevel="signature" />
+27-->[androidx.core:core:1.13.0] /Users/paulpamba/.gradle/caches/transforms-4/7355ed258ff004f1f7a52a25b39730a1/transformed/core-1.13.0/AndroidManifest.xml:24:9-44
+28
+29    <uses-permission android:name="com.technotrade.pts2.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+29-->[androidx.core:core:1.13.0] /Users/paulpamba/.gradle/caches/transforms-4/7355ed258ff004f1f7a52a25b39730a1/transformed/core-1.13.0/AndroidManifest.xml:26:5-97
+29-->[androidx.core:core:1.13.0] /Users/paulpamba/.gradle/caches/transforms-4/7355ed258ff004f1f7a52a25b39730a1/transformed/core-1.13.0/AndroidManifest.xml:26:22-94
+30
+31    <application
+31-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:7:5-9:19
+32        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+32-->[androidx.core:core:1.13.0] /Users/paulpamba/.gradle/caches/transforms-4/7355ed258ff004f1f7a52a25b39730a1/transformed/core-1.13.0/AndroidManifest.xml:28:18-86
+33        android:debuggable="true"
+34        android:extractNativeLibs="false" >
+35        <uses-library android:name="android.test.runner" />
+35-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:8:9-60
+35-->/Users/paulpamba/development/mobile/WEBCORP/PROJECTS/FAS/PTS2.Java.Android/pts2/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest2149753415952245655.xml:8:23-57
+36
+37        <provider
+37-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+38            android:name="androidx.startup.InitializationProvider"
+38-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+39            android:authorities="com.technotrade.pts2.test.androidx-startup"
+39-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+40            android:exported="false" >
+40-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+41            <meta-data
+41-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+42                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+42-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+43                android:value="androidx.startup" />
+43-->[androidx.emoji2:emoji2:1.3.0] /Users/paulpamba/.gradle/caches/transforms-4/bbff60290d60267acd87fec74002c126/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+44            <meta-data
+44-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/paulpamba/.gradle/caches/transforms-4/fb7849b71f37df2cbd33d1dc3c9740cc/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+45                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+45-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/paulpamba/.gradle/caches/transforms-4/fb7849b71f37df2cbd33d1dc3c9740cc/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+46                android:value="androidx.startup" />
+46-->[androidx.lifecycle:lifecycle-process:2.6.2] /Users/paulpamba/.gradle/caches/transforms-4/fb7849b71f37df2cbd33d1dc3c9740cc/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+47            <meta-data
+47-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+48                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+48-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+49                android:value="androidx.startup" />
+49-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+50        </provider>
+51
+52        <receiver
+52-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+53            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+53-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+54            android:directBootAware="false"
+54-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+55            android:enabled="true"
+55-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+56            android:exported="true"
+56-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+57            android:permission="android.permission.DUMP" >
+57-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+58            <intent-filter>
+58-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+59                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+59-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+59-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+60            </intent-filter>
+61            <intent-filter>
+61-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+62                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+62-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+62-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+63            </intent-filter>
+64            <intent-filter>
+64-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+65                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+65-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+65-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+66            </intent-filter>
+67            <intent-filter>
+67-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+68                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+68-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+68-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/paulpamba/.gradle/caches/transforms-4/6254ae4f9cd24468116e49c2c1f0950c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+69            </intent-filter>
+70        </receiver>
+71    </application>
+72
+73</manifest>

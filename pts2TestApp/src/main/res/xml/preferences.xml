@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.preference.PreferenceCategory android:title="Connection">
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="admin"
+            android:dialogMessage="Enter login"
+            android:dialogTitle="Login"
+            android:key="login"
+            android:title="Login"
+            app:useSimpleSummaryProvider="true" />
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="admin"
+            android:dialogMessage="Enter password"
+            android:dialogTitle="Password"
+            android:key="password"
+            android:title="Password"
+            app:useSimpleSummaryProvider="true" />
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="192.168.1.117"
+            android:dialogMessage="Enter the host or domain of PTS device"
+            android:dialogTitle="Host or domain of PTS device"
+            android:key="host_domain"
+            android:title="Host or domain"
+            app:useSimpleSummaryProvider="true" />
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="80"
+            android:dialogMessage="Enter the HTTP port number"
+            android:dialogTitle="HTTP port number"
+            android:ems="10"
+            android:inputType="number"
+            android:key="http_port_number"
+            android:title="HTTP port Number"
+            app:useSimpleSummaryProvider="true" />
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="443"
+            android:dialogMessage="Enter the HTTPS port number"
+            android:dialogTitle="HTTPS port number"
+            android:ems="10"
+            android:inputType="number"
+            android:key="https_port_number"
+            android:title="HTTPS port Number"
+            app:useSimpleSummaryProvider="true" />
+
+        <androidx.preference.ListPreference
+            android:key="protocol_preference"
+            android:title="Protocol"
+            android:summary="Choose HTTP or HTTPS"
+            android:defaultValue="https"
+            android:entries="@array/protocol_entries"
+            android:entryValues="@array/protocol_values" />
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="true"
+            android:key="digest_auth_switch"
+            android:summary="Use Digest access authentication"
+            android:title="Authentication" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory android:title="Locale">
+
+        <androidx.preference.EditTextPreference
+            android:defaultValue="$"
+            android:dialogMessage="Enter currency symbol"
+            android:dialogTitle="Currency symbol"
+            android:key="currency"
+            android:title="Currency"
+            app:useSimpleSummaryProvider="true"/>
+
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

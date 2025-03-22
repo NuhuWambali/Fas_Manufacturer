@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.technotrade.pts2.pts2testapp.gui.viewmodel.PumpsViewModel" />
+
+        <variable
+            name="viewModel"
+            type="PumpsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/poly_blue"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPump"
+            android:layout_width="match_parent"
+            android:layout_height="206dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="4dp"
+            android:transitionName="cvPumpTransition"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="@dimen/cardview_default_elevation"
+            card_view:cardMaxElevation="@dimen/cardview_default_elevation"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="@{viewModel.selectedPump.stateBackgroundColor}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/flow"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/selector_button_card_item"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/flPump"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tvPumpNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/sphere"
+                            android:gravity="center"
+                            android:shadowColor="@color/black"
+                            android:shadowDx="-4"
+                            android:shadowDy="-4"
+                            android:shadowRadius="4"
+                            android:maxLines="1"
+                            android:text="@{String.valueOf(viewModel.selectedPump.number)}"
+                            android:textColor="@color/skyblue"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/pcProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:progress="@{viewModel.selectedPump.progress}"
+                            card_view:indicatorColor="@color/skyblue"
+                            card_view:indicatorSize="55dp"
+                            card_view:trackColor="@color/grey_avg"
+                            card_view:trackThickness="8dp"/>
+                    </FrameLayout>
+
+                    <TableLayout
+                        android:id="@+id/tableLayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:stretchColumns="0,1">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvStateCaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/state_label_with_colon"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvState"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@{viewModel.selectedPump.stateDescription}"
+                                    android:textColor="@{viewModel.selectedPump.stateColor}"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:shadowDx="0"
+                                    android:shadowDy="0"
+                                    android:shadowColor="@color/green_dark"
+                                    android:shadowRadius="2" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvVolumeCaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/volume_label_with_colon"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvVolume"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:volumeWithUnit="@{viewModel.selectedPump.volume}" />
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvFuelNameCaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/fuel_name_label_with_colon"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvFuelName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@{viewModel.selectedPump.fuelName}"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvPriceCaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/price_label_with_colon"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvPrice"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:priceWithCurrencySymbol="@{viewModel.selectedPump.price}"/>
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvNozzleCaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/nozzle_label_with_colon"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvNozzle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@{String.valueOf(viewModel.selectedPump.nozzle)}"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tvAmountCaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:text="@string/amount_label_with_colon"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvAmount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:priceWithCurrencySymbol="@{viewModel.selectedPump.amount}" />
+                            </LinearLayout>
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <!--user details-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="@dimen/cardview_default_elevation"
+            app:cardMaxElevation="@dimen/cardview_default_elevation"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/cvPump">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/flow"
+                android:padding="16dp">
+
+                <!-- Customer Details Header -->
+                <TextView
+                    android:id="@+id/tvCustomerDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/grey"
+                    android:text="Customer Details and Pump Details:"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:paddingBottom="10dp"/>
+
+                <!-- Full Name Input -->
+                <EditText
+                    android:id="@+id/etFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Name"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"/>
+
+                <!-- TIN Input -->
+                <EditText
+                    android:id="@+id/etTIN"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="TIN"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- Plate Number Input -->
+                <EditText
+                    android:id="@+id/etPlateNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Plate Number"
+                    android:inputType="text"
+                    android:textColorHint="@color/grey"
+                    android:textColor="@color/black"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- Spinner for Volume or Price Selection -->
+                <Spinner
+                    android:id="@+id/spinnerVolumePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/volume_or_amount_options"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- EditText for Volume, initially hidden -->
+                <EditText
+                    android:id="@+id/etVolume"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Volume (Litres)"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- EditText for Amount, initially hidden -->
+                <EditText
+                    android:id="@+id/etAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Amount"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"/>
+
+                <!-- Other fields like Nozzle -->
+                <EditText
+                    android:id="@+id/etNozzle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nozzle"
+                    android:inputType="text"
+                    android:textColorHint="@color/grey"
+                    android:textColor="@color/black"
+                    android:padding="8dp"
+                    android:background="@drawable/edittext_background"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fKeyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/transparent"
+            app:defaultNavHost="false" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

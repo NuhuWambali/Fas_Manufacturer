@@ -1,0 +1,3 @@
+com.technotrade.pts2
+raw ttdispenser
+string app_name

@@ -1,0 +1,7 @@
+<resources>
+    <!-- Define the array for Volume or Price options -->
+    <string-array name="volume_or_amount_options">
+        <item>Volume</item>
+        <item>Amount</item>
+    </string-array>
+</resources>

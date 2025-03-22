@@ -1,0 +1,32 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.technotrade.pts2" >
+4
+5    <uses-sdk android:minSdkVersion="24" />
+6
+7    <uses-permission android:name="android.permission.INTERNET" />
+7-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:4:5-66
+7-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:4:22-64
+8    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+8-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:5:5-78
+8-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:5:22-76
+9    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+9-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:6:5-74
+9-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:6:22-71
+10    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+10-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:7:5-78
+10-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:7:22-76
+11    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+11-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:8:5-80
+11-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:8:22-78
+12    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+12-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:9:5-71
+12-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:9:22-68
+13    <uses-permission android:name="android.permission.WAKE_LOCK" />
+13-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:10:5-68
+13-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:10:22-65
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:11:5-66
+14-->/Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:11:22-63
+15
+16</manifest>

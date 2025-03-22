@@ -1,0 +1,48 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:2:1-12:12
+INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:2:1-12:12
+	package
+		INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:5:5-78
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.ACCESS_LOCATION
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:6:5-74
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:6:22-71
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:7:5-78
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:8:22-78
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:9:5-71
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:9:22-68
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:10:5-68
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:10:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:11:5-66
+	android:name
+		ADDED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml:11:22-63
+uses-sdk
+INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml
+INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/webcorporation/Web Corporation Limited/Mobile Apps/WorkSpace/New Fas/PTS2.Java.Android/pts2/src/main/AndroidManifest.xml
