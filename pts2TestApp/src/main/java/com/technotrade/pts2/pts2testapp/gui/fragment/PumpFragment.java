@@ -1,3 +1,4 @@
+
 package com.technotrade.pts2.pts2testapp.gui.fragment;
 
 import android.animation.Animator;
@@ -66,10 +67,8 @@ public class PumpFragment extends BaseFragment<PumpsViewModel> {
                 // Show the relevant EditText based on the spinner selection
                 if (position == 0) { // Volume selected
                     etVolume.setVisibility(View.VISIBLE);
-                    etPrice.setText(""); // Clear Amount field when switching to Volume
                 } else if (position == 1) { // Price selected
                     etPrice.setVisibility(View.VISIBLE);
-                    etVolume.setText(""); // Clear Volume field when switching to Amount
                 }
             }
 
@@ -78,6 +77,34 @@ public class PumpFragment extends BaseFragment<PumpsViewModel> {
                 // No action required
             }
         });
+        View rootView = inflater.inflate(R.layout.fragment_pump, container, false);
+        // Inside your onCreate or onViewCreated method
+        Spinner spinnerVolumePrice = rootView.findViewById(R.id.spinnerVolumePrice);
+        EditText etVolume = rootView.findViewById(R.id.etVolume);
+        EditText etAmount = rootView.findViewById(R.id.etAmount);
+
+// Set up the spinner to listen for changes
+        spinnerVolumePrice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedOption = (String) parentView.getItemAtPosition(position);
+
+                // Toggle visibility based on selection
+                if (selectedOption.equals("Volume")) {
+                    etVolume.setVisibility(View.VISIBLE);
+                    etAmount.setVisibility(View.GONE);
+                } else if (selectedOption.equals("Amount")) {
+                    etVolume.setVisibility(View.GONE);
+                    etAmount.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing
+            }
+        });
+
 
         return mBinding.getRoot();
     }

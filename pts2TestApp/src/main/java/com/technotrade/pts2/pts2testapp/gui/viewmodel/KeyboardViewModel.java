@@ -8,6 +8,8 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,7 +17,13 @@ import org.json.JSONObject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.MutableLiveData;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.RequestQueue;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.technotrade.pts2.pts2testapp.ApplicationFacade;
@@ -129,6 +137,7 @@ public class KeyboardViewModel extends BaseViewModel {
 
 
 
+
 //    public void onButtonEnterClicked(View view) {
 //        String userInput = mMonitorBottom.getValue();
 //
@@ -145,6 +154,9 @@ public class KeyboardViewModel extends BaseViewModel {
 //        mStateMachine.transition(new FuelingState(), stateData);
 //        System.out.println(stateData);
 //    }
+
+
+
 
     public void onButtonClearClicked(View view) {
         StateData stateData = prepareStateData();
@@ -348,100 +360,135 @@ public class KeyboardViewModel extends BaseViewModel {
 //        }
 //        return jsonObject;
 //    }
-private JSONObject prepareJsonData(View rootView) {
-    JSONObject jsonObject = new JSONObject();
-    JSONObject dataObject = new JSONObject();
-    JSONObject customerObject = new JSONObject();
 
-    try {
-        // Retrieve inputs
-        String nozzle = ((EditText) rootView.findViewById(R.id.etNozzle)).getText().toString().trim();
-        String amount = ((EditText) rootView.findViewById(R.id.etAmount)).getText().toString().trim();
-        String volume = ((EditText) rootView.findViewById(R.id.etVolume)).getText().toString().trim();
-        String tin = ((EditText) rootView.findViewById(R.id.etTIN)).getText().toString().trim();
-        String fullName = ((EditText) rootView.findViewById(R.id.etFullName)).getText().toString().trim();
-        String plateNumber = ((EditText) rootView.findViewById(R.id.etPlateNumber)).getText().toString().trim();
+    private JSONObject prepareJsonData(View rootView) {
+        JSONObject jsonObject = new JSONObject();
+        JSONObject dataObject = new JSONObject();
+        JSONObject customerObject = new JSONObject();
 
-        // TIN validation: Must be exactly 9 digits and contain only numbers from 0 to 9
-        if (!tin.matches("^[0-9]{9}$")) {
-            showColoredAlert(rootView, "Invalid TIN", "TIN must be exactly 9 digits and contain only numbers from 0 to 9.", Color.RED);
-            return jsonObject;
-        }
+        try {
+            // Retrieve inputs
+            EditText etNozzle = rootView.findViewById(R.id.etNozzle);
+            EditText etAmount = rootView.findViewById(R.id.etAmount);
+            EditText etVolume = rootView.findViewById(R.id.etVolume);
+            EditText etTIN = rootView.findViewById(R.id.etTIN);
+            EditText etFullName = rootView.findViewById(R.id.etFullName);
+            EditText etPlateNumber = rootView.findViewById(R.id.etPlateNumber);
 
-        // Get the selected pump
-        PumpItem selectedPump = mPTSManager.getDataStorage().getSelectedPump();
-        if (selectedPump == null) {
-            showColoredAlert(rootView, "Error", "No pump selected!", Color.RED);
-            return jsonObject;
-        }
+            String nozzle = etNozzle.getText().toString().trim();
+            String amount = etAmount.getText().toString().trim();
+            String volume = etVolume.getText().toString().trim();
+            String tin = etTIN.getText().toString().trim();
+            String fullName = etFullName.getText().toString().trim();
+            String plateNumber = etPlateNumber.getText().toString().trim();
 
-        // Convert inputs to proper types
-        int parsedNozzle = nozzle.isEmpty() ? 0 : Integer.parseInt(nozzle);
-        double parsedAmount = amount.isEmpty() ? 0.0 : Double.parseDouble(amount);
-        double parsedVolume = volume.isEmpty() ? 0.0 : Double.parseDouble(volume);
-
-        // Nozzle must be greater than 0
-        if (parsedNozzle <= 0) {
-            showColoredAlert(rootView, "Invalid Input", "Nozzle must be greater than 0.", Color.RED);
-            return jsonObject;
-        }
-
-        // Check that only one of volume or amount is filled, and that the value is greater than 0
-        String type = "";
-        double dose = 0.0;
-
-        if (!volume.isEmpty() && !amount.isEmpty()) {
-            showColoredAlert(rootView, "Invalid Input", "Both volume and amount cannot be filled at the same time.", Color.RED);
-            return jsonObject;
-        } else if (!volume.isEmpty()) {
-            if (parsedVolume <= 0) {
-                showColoredAlert(rootView, "Invalid Input", "Volume must be greater than 0.", Color.RED);
+            // TIN validation: Must be exactly 9 digits and contain only numbers from 0 to 9
+            if (!tin.matches("^[0-9]{9}$")) {
+                showColoredAlert(rootView, "Invalid TIN", "TIN must be exactly 9 digits and contain only numbers from 0 to 9.", Color.RED);
                 return jsonObject;
             }
-            ((EditText) rootView.findViewById(R.id.etAmount)).setText("");
-            type = "Volume";
-            dose = parsedVolume;
-        } else if (!amount.isEmpty()) {
-            if (parsedAmount <= 0) {
-                showColoredAlert(rootView, "Invalid Input", "Amount must be greater than 0.", Color.RED);
+
+            // Get the selected pump
+            PumpItem selectedPump = mPTSManager.getDataStorage().getSelectedPump();
+            if (selectedPump == null) {
+                showColoredAlert(rootView, "Error", "No pump selected!", Color.RED);
                 return jsonObject;
             }
-            ((EditText) rootView.findViewById(R.id.etVolume)).setText("");
-            type = "Amount";
-            dose = parsedAmount;
-        } else {
-            showColoredAlert(rootView, "Invalid Input", "Either volume or amount must be filled.", Color.RED);
-            return jsonObject;
+
+            // Convert inputs to proper types
+            int parsedNozzle = nozzle.isEmpty() ? 0 : Integer.parseInt(nozzle);
+            double parsedAmount = amount.isEmpty() ? 0.0 : Double.parseDouble(amount);
+            double parsedVolume = volume.isEmpty() ? 0.0 : Double.parseDouble(volume);
+
+            // Nozzle must be greater than 0
+            if (parsedNozzle <= 0) {
+                showColoredAlert(rootView, "Invalid Input", "Nozzle must be greater than 0.", Color.RED);
+                return jsonObject;
+            }
+
+            // Logic to handle inputs
+            String type;
+            double dose;
+
+            if (amount.isEmpty() && volume.isEmpty()) {
+                etAmount.setText("");
+                etVolume.setText("");
+                type = "FullTank";
+                dose = 0.0;
+
+                // Show confirmation dialog before proceeding
+                new AlertDialog.Builder(rootView.getContext())
+                        .setTitle("Confirm Full Tank")
+                        .setMessage("You are about to fill the full tank. Do you want to proceed?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            // Proceed with the transaction
+                            proceedWithTransaction(rootView, jsonObject, dataObject, customerObject, selectedPump, parsedNozzle, type, dose, tin, fullName, plateNumber);
+                        })
+                        .setNegativeButton("No", null)  // Do nothing on No
+                        .show();
+
+            } else {
+                // If there is a volume or amount, ensure only one field is filled
+                if (!volume.isEmpty() && !amount.isEmpty()) {
+                    type = "";
+                    dose = 0.0;
+                    showColoredAlert(rootView, "Invalid Input", "Both volume and amount cannot be filled at the same time.", Color.RED);
+                    return jsonObject;
+                } else if (!volume.isEmpty()) {
+                    etAmount.setText("");  // Clear amount if volume is selected
+                    type = "Volume";
+                    dose = parsedVolume;
+                } else if (!amount.isEmpty()) {
+                    etVolume.setText("");  // Clear volume if amount is selected
+                    type = "Amount";
+                    dose = parsedAmount;
+                } else {
+                    type = "";
+                    dose = 0.0;
+                }
+            }
+
+            proceedWithTransaction(rootView, jsonObject, dataObject, customerObject, selectedPump, parsedNozzle, type, dose, tin, fullName, plateNumber);
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            showColoredAlert(rootView, "Error", "JSON creation failed: " + e.getMessage(), Color.RED);
         }
 
-        // Populate "data" object
-        dataObject.put("pump", selectedPump.getNumber());
-        dataObject.put("nozzle", parsedNozzle);
-        dataObject.put("type", type);
-        dataObject.put("dose", dose);
-
-        // Populate "customer" object
-        customerObject.put("tin", tin);
-        customerObject.put("name", fullName);
-        customerObject.put("plateNumber", plateNumber);
-
-        // Add data to the main JSON object
-        jsonObject.put("data", dataObject);
-        jsonObject.put("customer", customerObject);
-
-        System.out.println("Generated JSON: " + jsonObject.toString());
-
-        // Show success message in green
-
-        // Send the generated JSON to the API
-        sendPumpAuthorizationRequest(jsonObject, rootView);
-
-    } catch (JSONException | NumberFormatException e) {
-        e.printStackTrace();
-        showColoredAlert(rootView, "Error", "JSON creation failed: " + e.getMessage(), Color.RED);
+        return jsonObject;
     }
-    return jsonObject;
-}
+
+    private void proceedWithTransaction(View rootView, JSONObject jsonObject, JSONObject dataObject, JSONObject customerObject, PumpItem selectedPump, int parsedNozzle, String type, double dose, String tin, String fullName, String plateNumber) {
+        try {
+            // Fill the data object
+            dataObject.put("pump", selectedPump.getNumber());
+            dataObject.put("nozzle", parsedNozzle);
+            dataObject.put("type", type);
+            dataObject.put("dose", dose);
+
+            // Populate the customer object
+            customerObject.put("tin", tin);
+            customerObject.put("name", fullName);
+            customerObject.put("plateNumber", plateNumber);
+
+            // Add data to the main JSON object
+            jsonObject.put("data", dataObject);
+            jsonObject.put("customer", customerObject);
+
+            System.out.println("Generated JSON: " + jsonObject.toString());
+
+            // Send the generated JSON to the API
+            sendPumpAuthorizationRequest(jsonObject, rootView);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            showColoredAlert(rootView, "Error", "Transaction failed: " + e.getMessage(), Color.RED);
+        }
+    }
+
+
+
+
 
 
     // Helper method to show colored alerts
@@ -469,13 +516,12 @@ private JSONObject prepareJsonData(View rootView) {
 
     private void sendPumpAuthorizationRequest(JSONObject jsonData, View rootView) {
         // Create the confirmation dialog
-
         new AlertDialog.Builder(rootView.getContext())
                 .setTitle("Confirm Transaction")
                 .setMessage("Do you want to proceed with this transaction?")
                 .setPositiveButton("Yes", (dialog, which) -> {
 
-                    String url = "http://192.168.100.178:5301/api/pump/authorize";
+                    String url = "http://192.168.100.8:5301/api/pump/authorize";
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                             1,
@@ -485,16 +531,30 @@ private JSONObject prepareJsonData(View rootView) {
                                 try {
                                     String responseMessage = response.getString("message");
 
+                                    // Log the server response
+                                    System.out.println("Server Response: " + responseMessage);
+
                                     if ("Success".equalsIgnoreCase(responseMessage)) {
+                                        JSONObject successDetails = response.getJSONObject("ptsPacketResponse");
+
+                                        System.out.println("Transaction Success: " + successDetails.toString());
+
                                         showAlert(rootView, "Transaction Success", "Filling in progress...", Color.BLACK);
                                         clearInputs(rootView);
                                     } else if ("Failure".equalsIgnoreCase(responseMessage)) {
                                         JSONObject errorDetails = response.getJSONObject("ptsPacketResponse");
                                         String errorMessage = errorDetails.optString("message", "Unknown Error Occurred");
+
+                                        // Log the error details
+                                        System.out.println("Transaction Failure: " + errorMessage);
+
                                         showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    // Log the exception message
+                                    System.out.println("Error in Response: " + e.getMessage());
+
                                     showAlert(rootView, "Transaction Failed", "Invalid server response", Color.RED);
                                 }
                             },
@@ -504,6 +564,8 @@ private JSONObject prepareJsonData(View rootView) {
                                     // Server response with error
                                     int statusCode = error.networkResponse.statusCode;
                                     String errorData = new String(error.networkResponse.data);
+
+                                    // Log the error response
                                     System.out.println("Error Code: " + statusCode);
                                     System.out.println("Error Data: " + errorData);
 
@@ -512,6 +574,9 @@ private JSONObject prepareJsonData(View rootView) {
                                         if (errorJson.has("ptsPacketResponse")) {
                                             JSONObject errorDetails = errorJson.getJSONObject("ptsPacketResponse");
                                             errorMessage = errorDetails.optString("message", "Unknown server error");
+
+                                            // Log the error details
+                                            System.out.println("Error Message from server: " + errorMessage);
                                         } else {
                                             errorMessage = errorJson.optString("message", "Unknown server error");
                                         }
@@ -519,22 +584,24 @@ private JSONObject prepareJsonData(View rootView) {
                                         e.printStackTrace();
                                         errorMessage = "Failed to parse error response.";
                                     }
-                                } else if (error instanceof com.android.volley.TimeoutError) {
+                                } else if (error instanceof TimeoutError) {
                                     errorMessage = "Request timed out. Please try again.";
-                                } else if (error instanceof com.android.volley.NoConnectionError) {
+                                } else if (error instanceof NoConnectionError) {
                                     errorMessage = "No internet connection. Check your network.";
-                                } else if (error instanceof com.android.volley.AuthFailureError) {
+                                } else if (error instanceof AuthFailureError) {
                                     errorMessage = "Authorization failed.";
-                                } else if (error instanceof com.android.volley.ServerError) {
+                                } else if (error instanceof ServerError) {
                                     errorMessage = "Server error. Try again later.";
-                                } else if (error instanceof com.android.volley.NetworkError) {
+                                } else if (error instanceof NetworkError) {
                                     errorMessage = "Network error occurred.";
-                                } else if (error instanceof com.android.volley.ParseError) {
+                                } else if (error instanceof ParseError) {
                                     errorMessage = "Response parsing failed.";
                                 }
 
-                                showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+                                // Log the error message
+                                System.out.println("Transaction Failed: " + errorMessage);
 
+                                showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
                             }
                     );
 
@@ -566,13 +633,6 @@ private JSONObject prepareJsonData(View rootView) {
                 .setPositiveButton("Close", (dialog, which) -> dialog.dismiss())
                 .show();
     }
-
-
-
-
-
-
-
 
 
 

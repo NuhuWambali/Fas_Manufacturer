@@ -3,5 +3,6 @@
     <string-array name="volume_or_amount_options">
         <item>Volume</item>
         <item>Amount</item>
+        <item>Full Tank</item>
     </string-array>
 </resources>

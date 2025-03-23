@@ -319,7 +319,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/flow2"
+                android:background="@drawable/flow"
                 android:padding="16dp">
 
                 <!-- Customer Details Header -->
