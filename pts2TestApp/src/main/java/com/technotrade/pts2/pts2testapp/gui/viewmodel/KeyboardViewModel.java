@@ -421,12 +421,14 @@ public class KeyboardViewModel extends BaseViewModel {
                         .setTitle("Confirm Full Tank")
                         .setMessage("You are about to fill the full tank. Do you want to proceed?")
                         .setPositiveButton("Yes", (dialog, which) -> {
-                            // Proceed with the transaction
                             proceedWithTransaction(rootView, jsonObject, dataObject, customerObject, selectedPump, parsedNozzle, type, dose, tin, fullName, plateNumber);
                         })
                         .setNegativeButton("No", null)  // Do nothing on No
+
+                        .setNegativeButton("No", null)  // Do nothing on No
                         .show();
 
+                return jsonObject;  // Stop further processing until the user confirms
             } else {
                 // If there is a volume or amount, ensure only one field is filled
                 if (!volume.isEmpty() && !amount.isEmpty()) {
@@ -478,7 +480,7 @@ public class KeyboardViewModel extends BaseViewModel {
             System.out.println("Generated JSON: " + jsonObject.toString());
 
             // Send the generated JSON to the API
-            sendPumpAuthorizationRequest(jsonObject, rootView);
+            sendPumpAuthorizationRequest(jsonObject, rootView,new PumpItem());
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -514,13 +516,127 @@ public class KeyboardViewModel extends BaseViewModel {
     }
 
 
-    private void sendPumpAuthorizationRequest(JSONObject jsonData, View rootView) {
+//    private void sendPumpAuthorizationRequest(JSONObject jsonData, View rootView) {
+//        // Create the confirmation dialog
+//        new AlertDialog.Builder(rootView.getContext())
+//                .setTitle("Confirm Transaction")
+//                .setMessage("Do you want to proceed with this transaction?")
+//                .setPositiveButton("Yes", (dialog, which) -> {
+//
+//                    String url = "http://192.168.100.8:5301/api/pump/authorize";
+//
+//                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+//                            1,
+//                            url,
+//                            jsonData,
+//                            response -> {
+//                                try {
+//                                    String responseMessage = response.getString("message");
+//
+//                                    // Log the server response
+//                                    System.out.println("Server Response: " + responseMessage);
+//
+//                                    if ("Success".equalsIgnoreCase(responseMessage)) {
+//                                        JSONObject successDetails = response.getJSONObject("ptsPacketResponse");
+//
+//                                        System.out.println("Transaction Success: " + successDetails.toString());
+//
+//                                        showAlert(rootView, "Transaction Success", "Filling in progress...", Color.BLACK);
+//                                        clearInputs(rootView);
+//                                    } else if ("Failure".equalsIgnoreCase(responseMessage)) {
+//                                        JSONObject errorDetails = response.getJSONObject("ptsPacketResponse");
+//                                        String errorMessage = errorDetails.optString("message", "Unknown Error Occurred");
+//
+//                                        // Log the error details
+//                                        System.out.println("Transaction Failure: " + errorMessage);
+//
+//                                        showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                    // Log the exception message
+//                                    System.out.println("Error in Response: " + e.getMessage());
+//
+//                                    showAlert(rootView, "Transaction Failed", "Invalid server response", Color.RED);
+//                                }
+//                            },
+//                            error -> {
+//                                String errorMessage = "An unexpected error occurred.";
+//                                if (error.networkResponse != null) {
+//                                    // Server response with error
+//                                    int statusCode = error.networkResponse.statusCode;
+//                                    String errorData = new String(error.networkResponse.data);
+//
+//                                    // Log the error response
+//                                    System.out.println("Error Code: " + statusCode);
+//                                    System.out.println("Error Data: " + errorData);
+//
+//                                    try {
+//                                        JSONObject errorJson = new JSONObject(errorData);
+//                                        if (errorJson.has("ptsPacketResponse")) {
+//                                            JSONObject errorDetails = errorJson.getJSONObject("ptsPacketResponse");
+//                                            errorMessage = errorDetails.optString("message", "Unknown server error");
+//
+//                                            // Log the error details
+//                                            System.out.println("Error Message from server: " + errorMessage);
+//                                        } else {
+//                                            errorMessage = errorJson.optString("message", "Unknown server error");
+//                                        }
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                        errorMessage = "Failed to parse error response.";
+//                                    }
+//                                } else if (error instanceof TimeoutError) {
+//                                    errorMessage = "Request timed out. Please try again.";
+//                                } else if (error instanceof NoConnectionError) {
+//                                    errorMessage = "No internet connection. Check your network.";
+//                                } else if (error instanceof AuthFailureError) {
+//                                    errorMessage = "Authorization failed.";
+//                                } else if (error instanceof ServerError) {
+//                                    errorMessage = "Server error. Try again later.";
+//                                } else if (error instanceof NetworkError) {
+//                                    errorMessage = "Network error occurred.";
+//                                } else if (error instanceof ParseError) {
+//                                    errorMessage = "Response parsing failed.";
+//                                }
+//
+//                                // Log the error message
+//                                System.out.println("Transaction Failed: " + errorMessage);
+//
+//                                showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+//                            }
+//                    );
+//
+//                    RequestQueue requestQueue = Volley.newRequestQueue(rootView.getContext());
+//                    requestQueue.add(jsonObjectRequest);
+//                })
+//                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())  // Dismiss if "No"
+//                .show();
+//    }
+private void sendPumpAuthorizationRequest(JSONObject jsonData, View rootView, PumpItem pumpItem) {
+    try {
+        JSONObject customer = jsonData.getJSONObject("customer");
+        JSONObject data = jsonData.getJSONObject("data");
+
+        String fullName = customer.optString("name", "N/A");
+        String tin = customer.optString("tin", "N/A");
+        double dose = data.optDouble("dose", 0.0);
+        String type = data.optString("type", "N/A");
+
+        // Updated doseMessage with "Litres" for volume
+        String doseMessage = dose == 0.0 ? "Full Tank" : (type.equals("Amount") ? "Amount: " + dose : "Volume: " + dose + " Litres");
+
+        // Create the confirmation message
+        String confirmationMessage = "Customer Name: " + fullName + "\n"
+                + "TIN: " + tin + "\n"
+                + "Transaction: " + doseMessage + "\n\n"
+                + "Do you want to proceed with this transaction?";
+
         // Create the confirmation dialog
         new AlertDialog.Builder(rootView.getContext())
                 .setTitle("Confirm Transaction")
-                .setMessage("Do you want to proceed with this transaction?")
+                .setMessage(confirmationMessage)
                 .setPositiveButton("Yes", (dialog, which) -> {
-
                     String url = "http://192.168.100.8:5301/api/pump/authorize";
 
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
@@ -531,14 +647,14 @@ public class KeyboardViewModel extends BaseViewModel {
                                 try {
                                     String responseMessage = response.getString("message");
 
-                                    // Log the server response
-                                    System.out.println("Server Response: " + responseMessage);
-
                                     if ("Success".equalsIgnoreCase(responseMessage)) {
                                         JSONObject successDetails = response.getJSONObject("ptsPacketResponse");
 
+                                        // Log the success details
                                         System.out.println("Transaction Success: " + successDetails.toString());
 
+                                        // Show alert with the state description
+                                        String stateDescription = pumpItem.getStateDescription(); // Get the state description during filling
                                         showAlert(rootView, "Transaction Success", "Filling in progress...", Color.BLACK);
                                         clearInputs(rootView);
                                     } else if ("Failure".equalsIgnoreCase(responseMessage)) {
@@ -610,8 +726,212 @@ public class KeyboardViewModel extends BaseViewModel {
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss())  // Dismiss if "No"
                 .show();
-    }
 
+    } catch (JSONException e) {
+        e.printStackTrace();
+        showAlert(rootView, "Transaction Failed", "Error: " + e.getMessage(), Color.RED);
+    }
+}
+
+
+//    private void sendPumpAuthorizationRequest(JSONObject jsonData, View rootView, PumpItem pumpItem) {
+//        // Create the confirmation dialog
+//        new AlertDialog.Builder(rootView.getContext())
+//                .setTitle("Confirm Transaction")
+//                .setMessage("Do you want to proceed with this transaction?")
+//                .setPositiveButton("Yes", (dialog, which) -> {
+//
+//                    String url = "http://192.168.100.8:5301/api/pump/authorize";
+//
+//                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+//                            1,
+//                            url,
+//                            jsonData,
+//                            response -> {
+//                                try {
+//                                    String responseMessage = response.getString("message");
+//
+//                                    if ("Success".equalsIgnoreCase(responseMessage)) {
+//                                        JSONObject successDetails = response.getJSONObject("ptsPacketResponse");
+//
+//                                        // Log the success details
+//                                        System.out.println("Transaction Success: " + successDetails.toString());
+//
+//                                        // Show alert with the state description
+//                                        String stateDescription = pumpItem.getStateDescription(); // Get the state description during filling
+//                                        showAlert(rootView, "Transaction Success", "Filling in progress...", Color.BLACK);
+//                                        clearInputs(rootView);
+//                                    } else if ("Failure".equalsIgnoreCase(responseMessage)) {
+//                                        JSONObject errorDetails = response.getJSONObject("ptsPacketResponse");
+//                                        String errorMessage = errorDetails.optString("message", "Unknown Error Occurred");
+//
+//                                        // Log the error details
+//                                        System.out.println("Transaction Failure: " + errorMessage);
+//
+//                                        showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                    // Log the exception message
+//                                    System.out.println("Error in Response: " + e.getMessage());
+//
+//                                    showAlert(rootView, "Transaction Failed", "Invalid server response", Color.RED);
+//                                }
+//                            },
+//                            error -> {
+//                                String errorMessage = "An unexpected error occurred.";
+//                                if (error.networkResponse != null) {
+//                                    // Server response with error
+//                                    int statusCode = error.networkResponse.statusCode;
+//                                    String errorData = new String(error.networkResponse.data);
+//
+//                                    // Log the error response
+//                                    System.out.println("Error Code: " + statusCode);
+//                                    System.out.println("Error Data: " + errorData);
+//
+//                                    try {
+//                                        JSONObject errorJson = new JSONObject(errorData);
+//                                        if (errorJson.has("ptsPacketResponse")) {
+//                                            JSONObject errorDetails = errorJson.getJSONObject("ptsPacketResponse");
+//                                            errorMessage = errorDetails.optString("message", "Unknown server error");
+//
+//                                            // Log the error details
+//                                            System.out.println("Error Message from server: " + errorMessage);
+//                                        } else {
+//                                            errorMessage = errorJson.optString("message", "Unknown server error");
+//                                        }
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                        errorMessage = "Failed to parse error response.";
+//                                    }
+//                                } else if (error instanceof TimeoutError) {
+//                                    errorMessage = "Request timed out. Please try again.";
+//                                } else if (error instanceof NoConnectionError) {
+//                                    errorMessage = "No internet connection. Check your network.";
+//                                } else if (error instanceof AuthFailureError) {
+//                                    errorMessage = "Authorization failed.";
+//                                } else if (error instanceof ServerError) {
+//                                    errorMessage = "Server error. Try again later.";
+//                                } else if (error instanceof NetworkError) {
+//                                    errorMessage = "Network error occurred.";
+//                                } else if (error instanceof ParseError) {
+//                                    errorMessage = "Response parsing failed.";
+//                                }
+//
+//                                // Log the error message
+//                                System.out.println("Transaction Failed: " + errorMessage);
+//
+//                                showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+//                            }
+//                    );
+//
+//                    RequestQueue requestQueue = Volley.newRequestQueue(rootView.getContext());
+//                    requestQueue.add(jsonObjectRequest);
+//                })
+//                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())  // Dismiss if "No"
+//                .show();
+//    }
+
+//    private void sendPumpAuthorizationRequest(JSONObject jsonData, View rootView, PumpItem pumpItem) {
+//        // Create the confirmation dialog
+//        new AlertDialog.Builder(rootView.getContext())
+//                .setTitle("Confirm Transaction")
+//                .setMessage("Do you want to proceed with this transaction? Current status: " + pumpItem.getStateDescription())
+//                .setPositiveButton("Yes", (dialog, which) -> {
+//
+//                    String url = "http://192.168.100.8:5301/api/pump/authorize";
+//
+//                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+//                            1,
+//                            url,
+//                            jsonData,
+//                            response -> {
+//                                try {
+//                                    String responseMessage = response.getString("message");
+//
+//                                    if ("Success".equalsIgnoreCase(responseMessage)) {
+//                                        JSONObject successDetails = response.getJSONObject("ptsPacketResponse");
+//
+//                                        // Update the state description based on the server response
+//                                        String newStateDescription = successDetails.optString("stateDescription", "Unknown State");
+//                                        pumpItem.setStateDescription(newStateDescription);
+//
+//                                        // Get the updated state description
+//                                        String stateDescription = pumpItem.getStateDescription();
+//
+//                                        // Show alert with the state description
+//                                        showAlert(rootView, "Transaction Success", "Filling in progress...\nState: " + stateDescription, Color.BLACK);
+//                                        clearInputs(rootView);
+//                                    }else if ("Failure".equalsIgnoreCase(responseMessage)) {
+//                                        JSONObject errorDetails = response.getJSONObject("ptsPacketResponse");
+//                                        String errorMessage = errorDetails.optString("message", "Unknown Error Occurred");
+//
+//                                        // Log the error details
+//                                        System.out.println("Transaction Failure: " + errorMessage);
+//
+//                                        showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+//                                    }
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                    // Log the exception message
+//                                    System.out.println("Error in Response: " + e.getMessage());
+//
+//                                    showAlert(rootView, "Transaction Failed", "Invalid server response", Color.RED);
+//                                }
+//                            },
+//                            error -> {
+//                                String errorMessage = "An unexpected error occurred.";
+//                                if (error.networkResponse != null) {
+//                                    // Server response with error
+//                                    int statusCode = error.networkResponse.statusCode;
+//                                    String errorData = new String(error.networkResponse.data);
+//
+//                                    // Log the error response
+//                                    System.out.println("Error Code: " + statusCode);
+//                                    System.out.println("Error Data: " + errorData);
+//
+//                                    try {
+//                                        JSONObject errorJson = new JSONObject(errorData);
+//                                        if (errorJson.has("ptsPacketResponse")) {
+//                                            JSONObject errorDetails = errorJson.getJSONObject("ptsPacketResponse");
+//                                            errorMessage = errorDetails.optString("message", "Unknown server error");
+//
+//                                            // Log the error details
+//                                            System.out.println("Error Message from server: " + errorMessage);
+//                                        } else {
+//                                            errorMessage = errorJson.optString("message", "Unknown server error");
+//                                        }
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                        errorMessage = "Failed to parse error response.";
+//                                    }
+//                                } else if (error instanceof TimeoutError) {
+//                                    errorMessage = "Request timed out. Please try again.";
+//                                } else if (error instanceof NoConnectionError) {
+//                                    errorMessage = "No internet connection. Check your network.";
+//                                } else if (error instanceof AuthFailureError) {
+//                                    errorMessage = "Authorization failed.";
+//                                } else if (error instanceof ServerError) {
+//                                    errorMessage = "Server error. Try again later.";
+//                                } else if (error instanceof NetworkError) {
+//                                    errorMessage = "Network error occurred.";
+//                                } else if (error instanceof ParseError) {
+//                                    errorMessage = "Response parsing failed.";
+//                                }
+//
+//                                // Log the error message
+//                                System.out.println("Transaction Failed: " + errorMessage);
+//
+//                                showAlert(rootView, "Transaction Failed", "Error: " + errorMessage, Color.RED);
+//                            }
+//                    );
+//
+//                    RequestQueue requestQueue = Volley.newRequestQueue(rootView.getContext());
+//                    requestQueue.add(jsonObjectRequest);
+//                })
+//                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())  // Dismiss if "No"
+//                .show();
+//    }
 
     private void clearInputs(View rootView) {
         // Clear the values of the EditText fields

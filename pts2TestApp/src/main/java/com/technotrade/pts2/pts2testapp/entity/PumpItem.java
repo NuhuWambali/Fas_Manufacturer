@@ -39,6 +39,7 @@ public class PumpItem {
     }
 
     public String getStateDescription() {
+        System.out.printf("State is : %s\n", mStateDescription);
         return mStateDescription;
     }
 
